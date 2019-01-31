@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Twitter</title>
+  </head>
+
+  <body>
+
+    <form action="/tweet" method="POST">
+      <textarea name="text" rows="4" cols="40"></textarea>
+      
+      <button type="submit">Tweet</button>
+    </form>
+
+    {% for tweet in tweets %}
+    <p>{{ tweet[3] }} : {{ tweet[2] }}</p>
+    {% endfor %}
+    
+  </body>
+</html>
