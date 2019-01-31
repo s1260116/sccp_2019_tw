@@ -1,0 +1,24 @@
+import MyTwtr_DB as DB
+from flask import *
+
+app = Flask(__name__)
+
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+@app.route("/create", methods=["POST", "GET"])
+def create():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        if DB.login_user(username) == None:
+            DB.add_user(username, password)
+            session["username"] = username
+            return render_template("index.html", username=session["username"])
+    return render_template("create.html")
+
+app.secret_key = 'ri2@#R@38{ERF:L{$:L87y'
+
+if __name__ == "__main__":
+    app.run(debug = True)
